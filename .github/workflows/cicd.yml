@@ -1,0 +1,25 @@
+name: Optimized CICD Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6.0.2
+
+      - name: Installing NodeJS
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: echo "No Tests yet"
+
+      - name: Build Docker Image
+        run: echo "Building Docker Image"
