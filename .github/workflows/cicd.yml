@@ -41,4 +41,5 @@ jobs:
         run: echo "Building Docker Image"
 
       - name: Deploying to production
-        if: 
+        if: ${{ github.event.inputs.env == 'prod' }}
+        run: echo "Deploying to production"
