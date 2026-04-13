@@ -38,6 +38,8 @@ jobs:
       - name: Run Tests
         run: echo "No Tests yet"
 
+      - run: exit 1
+
       - name: Build Docker Image
         run: docker build -t myapp:${{ github.event.inputs.version }} .
 
@@ -48,4 +50,11 @@ jobs:
         run: |
           curl -X POST -H 'Content-type: application/json' \
           --data '{"text":"Build Completed!"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Handling Failures
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"Build Failed!"}' \
           ${{ secrets.SLACK_WEBHOOK_URL }}
