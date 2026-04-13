@@ -41,6 +41,9 @@ jobs:
       - name: Deploying
         run: echo "Deploying to environment ${{ github.event.inputs.env }}"
 
+      - name: Deploying the image
+        run: docker run -d -p 3000:3000 myapp:${{ github.event.inputs.version }}
+      
       - name: Notifying Slack
         run: |
           curl -X POST -H 'Content-type: application/json' \
@@ -53,6 +56,7 @@ jobs:
           curl -X POST -H 'Content-type: application/json' \
           --data '{"text":"Build Failed!"}' \
           ${{ secrets.SLACK_WEBHOOK_URL }}
+
   test:
     runs-on: ubuntu-latest
     steps:
