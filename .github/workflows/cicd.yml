@@ -1,7 +1,6 @@
 name: Optimized CICD Pipeline
 
 on: 
-  push:
   workflow_dispatch: 
     inputs:
       env:
