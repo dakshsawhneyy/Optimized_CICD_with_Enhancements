@@ -35,11 +35,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Tests
-        run: echo "No Tests yet"
-
-      - run: exit 1
-
       - name: Build Docker Image
         run: docker build -t myapp:${{ github.event.inputs.version }} .
 
@@ -58,3 +53,8 @@ jobs:
           curl -X POST -H 'Content-type: application/json' \
           --data '{"text":"Build Failed!"}' \
           ${{ secrets.SLACK_WEBHOOK_URL }}
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Tests
+        run: echo "No Tests yet"
