@@ -3,6 +3,14 @@ name: Optimized CICD Pipeline
 on: 
   push:
   workflow_dispatch: 
+    inputs:
+      env:
+        default: 'staging'
+        type: choice
+        options:
+          - prod
+          - staging
+          - dev
 
 jobs:
   build:
@@ -31,3 +39,6 @@ jobs:
 
       - name: Build Docker Image
         run: echo "Building Docker Image"
+
+      - name: Deploying to production
+        if: 
