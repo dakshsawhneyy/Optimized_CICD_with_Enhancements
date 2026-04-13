@@ -1,6 +1,8 @@
 name: Optimized CICD Pipeline
 
-on: [push]
+on: 
+  push:
+  workflow_dispatch: 
 
 jobs:
   build:
