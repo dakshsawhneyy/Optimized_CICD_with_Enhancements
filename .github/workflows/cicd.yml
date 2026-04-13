@@ -10,6 +10,8 @@ on:
           - prod
           - staging
           - dev
+      version:
+        default: 'v1'
 
 jobs:
   build:
@@ -37,7 +39,7 @@ jobs:
         run: echo "No Tests yet"
 
       - name: Build Docker Image
-        run: echo "Building Docker Image"
+        run: docker build -t myapp:${{ github.event.inputs.version }} .
 
       - name: Deploying
         run: echo "Deploying to environment ${{ github.event.inputs.env }}"
