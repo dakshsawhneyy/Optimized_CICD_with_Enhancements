@@ -43,3 +43,7 @@ jobs:
 
       - name: Deploying
         run: echo "Deploying to environment ${{ github.event.inputs.env }}"
+
+      - name: Notifying Slack
+        run: |
+          
